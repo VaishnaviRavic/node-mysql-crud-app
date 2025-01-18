@@ -3,7 +3,7 @@ const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
-require('dotenv').config();
+require('dotenv').config(); // Add this line
 
 const app = express();
 
@@ -11,14 +11,13 @@ const playerRoutes = require('./routes/player.routes');
 const homeRoutes = require('./routes/index.routes');
 const port = 2000;
 
-
 // create connection to database
 // the mysql.createConnection function takes in a configuration object which contains host, user, password and the database name.
-const db = mysql.createConnection ({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'socka'
+const db = mysql.createConnection({
+    host: process.env.DB_HOST, // Updated to use environment variables
+    user: process.env.DB_USER, // Updated to use environment variables
+    password: process.env.DB_PASS, // Updated to use environment variables
+    database: process.env.DB_NAME // Updated to use environment variables
 });
 
 // connect to database
